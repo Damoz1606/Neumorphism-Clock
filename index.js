@@ -2,6 +2,13 @@ const secHand = document.querySelector(".container .sec-hand");
 const minHand = document.querySelector(".container .min-hand");
 const hourHand = document.querySelector(".container .hour-hand");
 
+const buttonMode = document.querySelector('[data-change="mode"]');
+const body = document.querySelector("body");
+const iconLight = document.querySelector(".light");
+const iconDark = document.querySelector(".dark");
+
+let mode = false;
+
 const deg = 6;
 
 setInterval(() => {
@@ -16,3 +23,16 @@ setInterval(() => {
 
     document.querySelector(".digital-clock").innerHTML = `${`${hour}`.padStart(2, "0")}:${`${minutes}`.padStart(2, "0")}:${`${seconds}`.padStart(2, "0")}`
 });
+
+const toggleMode = () => {
+    body.setAttribute("data-mode", mode ? "dark" : "light");
+    mode = !mode;
+    document.querySelectorAll(".icon").forEach((icon) => icon.classList.remove("none"));
+    if (mode) {
+        iconDark.classList.add("none");
+    } else {
+        iconLight.classList.add("none");
+    }
+}
+
+buttonMode.addEventListener("click", toggleMode);

@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik');
 
 :root {
-    --background: #DDE1E6;
-    --light-shadow: #FFFFFF73;
+    --background: #edeef2;
+    --light-shadow: #fff;
     --dark-shadow: #5e687949;
-    --primary-color: #4169E1
+    --primary-color: #fa4300;
+    --color: var(--dark-shadow);
+    --text-color: #2f4267;
+}
+
+[data-mode="dark"] {
+    --background: #31363c;
+    --light-shadow: #43434380;
+    --dark-shadow: #0000004d;
+    --color: #6a707b;
+    --text-color: #6a707b;
 }
 
 * {
@@ -16,9 +26,18 @@
 body {
     background: var(--background);
     font-family: 'rubik', sans-serif;
+    transition: 0.5s ease;
 }
 
-.box {
+.neumorph-outside {
+    box-shadow: -3px -3px 7px var(--light-shadow), 3px 3px 7px var(--dark-shadow);
+}
+
+.neumorph-inside::before {
+    box-shadow: inset -3px -3px 7px var(--light-shadow), inset 3px 3px 7px var(--dark-shadow);
+}
+
+.digital-clock {
     text-align: center;
     height: 10;
     width: 350px;
@@ -28,11 +47,11 @@ body {
     left: 50%;
     transform: translate(-50%, 400%);
     background: var(--background);
-    box-shadow: -3px -3px 7px var(--light-shadow), 3px 3px 7px var(--dark-shadow);
     border-radius: 10px;
     padding: 1rem;
     font-weight: bold;
     text-transform: uppercase;
+    color: var(--text-color);
 }
 
 .container {
@@ -43,7 +62,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background: var(--background);
-    box-shadow: -3px -3px 7px var(--light-shadow), 3px 3px 7px var(--dark-shadow);
     border-radius: 100%;
 }
 
@@ -56,14 +74,13 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background: var(--background);
-    box-shadow: inset -3px -3px 7px var(--light-shadow), inset 3px 3px 7px var(--dark-shadow);
     border-radius: 100%;
 }
 
 .container .pivot {
     height: 20px;
     width: 20px;
-    background-color: #000000;
+    background-color: var(--text-color);
     border-radius: 100%;
     position: absolute;
     top: 50%;
@@ -80,7 +97,7 @@ body {
     top: 48.5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #404040;
+    background: var(--text-color);
     border-radius: 10px;
 }
 
@@ -94,6 +111,7 @@ body {
 
 .indicator div:nth-child(3) {
     transform: rotate(90deg) translate(-128px);
+    background: var(--primary-color);
 }
 
 .indicator div:nth-child(4) {
@@ -130,7 +148,6 @@ body {
 
 .indicator div:nth-child(12) {
     transform: rotate(360deg) translate(-128px);
-    background: var(--primary-color);
 }
 
 .sec-hand,
@@ -158,13 +175,13 @@ body {
 
 .min-hand::before {
     height: 100px;
-    background: black;
+    background: var(--text-color);
 }
 
 .hour-hand::before {
     height: 70px;
     width: 5px;
-    background: black;
+    background: var(--text-color);
 }
 
 .sec-hand {
@@ -177,4 +194,37 @@ body {
 
 .hour-hand {
     z-index: 1;
+}
+
+.btn {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 10;
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 550%);
+    background: var(--background);
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.icon-mode-indicator{
+    margin: 1rem;
+}
+
+.icon-mode-indicator svg * {
+    fill: var(--text-color);
+}
+
+.none {
+    opacity: 0;
+    width: 0;
 }
